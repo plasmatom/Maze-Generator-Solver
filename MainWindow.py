@@ -5,8 +5,34 @@ from MazePlot import MazeWidget
 from Maze import Maze
 import copy
 
-class mainPanel(QWidget):
+class MainPanel(QWidget):
+    """
+    Class to display the maze in the screen
+    Attributes:
+        main_layout: QHBoxLayout
+            the layout to put the image
+        height: int
+            hieght of the maze that will be displayed
+        width:  int
+            width of the maze that will be displayed
+        maze: list[list]
+            the maze that will be generated and then displayed    
+        maze_widget: MazeWidget
+            the widget that fully contains the maze and it is responsible for updating the maze
+    Metheods:
+        display_maze(clicked: str):
+            Resets the maze to the original maze and generates a new path
+        regenerate_maze(clicked: str):
+            generates a new empty maze
+    """
     def __init__(self):
+        """
+        Constructs all neccessary attributes for the MainPanel object
+        INPUT:
+            ....
+        OUTPUT:
+            ....
+        """
         super().__init__()
         self.main_layout = QHBoxLayout()
         size = self.size()
@@ -21,11 +47,27 @@ class mainPanel(QWidget):
 
 
 
-    def display_maze(self, clicked):
+    def display_maze(self, clicked: str):
+        """
+        resets the maze and generates a new path pased on the clicked algorithem
+        INPUT:
+            clicked: str
+                represents the algorithem that has been clicked
+        OUTPUT:
+            ....
+        """
         self.maze_widget.maze = copy.deepcopy(self.maze_widget.unsearched_maze)
         self.maze_widget.get_path(method=clicked)
     
-    def regenerate_maze(self, clicked):
+    def regenerate_maze(self, clicked='reg'):
+        """
+        genertes a new empty maze and removes the previews maze
+        INPUT:
+            clicked: str
+                takes a 'reg' string
+        OUTPUT:
+            ....
+        """
         new_maze = Maze(self.maze_widget.maze.height, self.maze_widget.maze.coverage, self.maze_widget.maze.aspect_ratio)
         new_maze_widget = MazeWidget(new_maze, (self.height, self.width))
         index = self.main_layout.indexOf(self.maze_widget)
@@ -39,9 +81,12 @@ class mainPanel(QWidget):
 
 
 class mainWindow(QMainWindow):
+    """
+    mainWindow class for main window of the GUI
+    """
     def __init__(self):
         super().__init__()
-        self.main_panel = mainPanel()
+        self.main_panel = MainPanel()
         self.setCentralWidget(self.main_panel)
         tool_bar = QToolBar()
         tool_bar.setMovable(False)

@@ -5,6 +5,13 @@ import sys
 
 
 def main():
+    """
+    the main function for the GUI
+    INPUT: 
+        ....
+    OUTPUT:
+        ....
+    """
     app = QApplication(sys.argv)
     app.setWindowIcon(QIcon('Icons/maze.png'))
     window = mainWindow()
