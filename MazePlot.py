@@ -12,7 +12,6 @@ def draw_maze(maze: Maze, image_size: tuple):
     width, height = image_size
     cell_size = min(width // maze.height, height // maze.width)
 
-
     img = Image.new("RGB", (height, width), "white")
     draw = ImageDraw.Draw(img)
 
@@ -65,7 +64,6 @@ class MazeWidget(QWidget):
         self.unsearched_maze = copy.deepcopy(self.maze)
         self.get_path()
 
-        # Create a QLabel to display the maze image
         self.label = QLabel()
         self.label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
 
