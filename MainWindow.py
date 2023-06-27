@@ -83,8 +83,21 @@ class MainPanel(QWidget):
 class mainWindow(QMainWindow):
     """
     mainWindow class for main window of the GUI
+    Attributes:
+    main_panel: MainPanel
+        the widget that will react to actions
+    methods:
+        checked(action: str):
+            controls the actions flow of the tool bar
     """
     def __init__(self):
+        """
+        intiializes the mainWindow widget  as well as creating a tool bar with icons
+        INPUT:
+            ....
+        OUTPUT:
+            ....
+        """
         super().__init__()
         self.main_panel = MainPanel()
         self.setCentralWidget(self.main_panel)
@@ -142,7 +155,15 @@ class mainWindow(QMainWindow):
 
 
 
-    def checked(self, action):
+    def checked(self, action: str):
+        """
+        controls the actions flow of the tool bar
+        INPUT:
+            action: str
+                the action to be executed
+        OUTPUT:
+            ....
+        """
         if action == 'reg':
             self.main_panel.regenerate_maze(action)
         else:
