@@ -8,7 +8,18 @@ from PIL.ImageQt import ImageQt
 import copy
 
 
-def draw_maze(maze: Maze, image_size: tuple):
+def draw_maze(maze: Maze, image_size: tuple[int]):
+    """
+    Generates a pixrl map for display
+    INPUT:
+        maze: Maze
+            Maze object that will be displayed
+        image_size: tuple[int]
+            conisists of the hight and width of the pixel map (width , hight)
+    OUTPUT:
+        img: Image
+            the pixel map
+    """
     width, height = image_size
     cell_size = min(width // maze.height, height // maze.width)
 
@@ -57,6 +68,18 @@ def draw_maze(maze: Maze, image_size: tuple):
     return img
 
 class MazeWidget(QWidget):
+    """
+    Object to render and control the maze image
+    Attributes:
+        dimenions: tuble
+        maze: Maze
+        unsearched_maze: Maze
+        label: Qlabel
+    Methods:
+        get_path():
+        draw_maze():
+        
+    """
     def __init__(self, maze: Maze, dimensions: tuple):
         super().__init__()
         self.dimensions = dimensions
