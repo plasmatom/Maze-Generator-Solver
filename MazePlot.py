@@ -78,7 +78,7 @@ class MazeWidget(QWidget):
     Methods:
         get_path():
         draw_maze():
-        
+        update_maze():
     """
     def __init__(self, maze: Maze, dimensions: tuple):
         super().__init__()
