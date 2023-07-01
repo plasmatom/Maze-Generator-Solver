@@ -76,11 +76,21 @@ class MazeWidget(QWidget):
         unsearched_maze: Maze
         label: Qlabel
     Methods:
-        get_path():
+        get_path(method='reg'):
         draw_maze():
         update_maze():
     """
     def __init__(self, maze: Maze, dimensions: tuple):
+        """
+        the function initilizes the MazeWidget object and controls the apearnce of the maze through class methods
+        INPUT:
+            maze: Maze
+                Maze object which will be displayed
+            dimensions: tuple
+                contains the image dimentions to be displayed
+        OUTPUT:
+            ...
+        """
         super().__init__()
         self.dimensions = dimensions
         self.maze = maze
@@ -118,6 +128,13 @@ class MazeWidget(QWidget):
             self.solution = []
 
     def draw_maze(self):
+        """
+        draws the initial image in the widget
+        INPUT:
+            ....
+        OUTPUT:
+            ....
+        """
         img = draw_maze(self.maze, image_size=self.dimensions)
 
         qimg = ImageQt(img)
@@ -129,6 +146,13 @@ class MazeWidget(QWidget):
         self.timer.start(0)
 
     def update_maze(self):
+        """
+        Updates the maze image in the widget
+        INPUT:
+            ....
+        OUTPUT:
+            ....
+        """
         try:
             position = self.steps.pop(0)
             self.maze.update_maze(position)
